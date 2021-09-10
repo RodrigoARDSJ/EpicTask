@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Login</title>
+<link href="css/style.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+
+	<section class="sectionForm">
+		<div class="color"></div>
+		<div class="box">
+			<div class="containerLogin">
+				<div class="login">
+					<h1>Login</h1>
+					<form>
+						<div class="inputbox">
+							<input type="email" id="email1" placeholder="Email">
+						</div>
+
+						<div class="inputbox">
+							<input type="password" class="input" id="password"
+								placeholder="Senha">
+						</div>
+
+						<div class="inputbox">
+							<input type="submit" class="button" value="Entrar">
+						</div>
+
+						<p class="forget">
+							Escqueçeu a senha? <a href="#">Cliqie aqui</a>
+						</p>
+						<p class="forget">
+							Não tem Conta? <a href="/login/new">Criar Usuario</a>
+						</p>
+						<p class="forget">
+							<a href="/login/new">Listar Usuarios</a>
+						</p>
+					</form>
+				</div>
+			</div>
+		</div>
+	</section>
+</body>
+</html>

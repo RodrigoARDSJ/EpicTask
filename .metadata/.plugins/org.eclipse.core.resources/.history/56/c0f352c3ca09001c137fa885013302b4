@@ -1,0 +1,30 @@
+package br.com.fiap.epictask.controller.api;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
+
+import br.com.fiap.epictask.model.Task;
+import br.com.fiap.epictask.repository.TaskRepository;
+
+@RestController
+public class ApiTaskController {
+
+	@Autowired
+	private TaskRepository repository;
+
+	@GetMapping("/api/task")
+	public List<Task> index() {
+		return repository.findAll();
+	}
+
+	@PostMapping("/api/task")
+	public void create(@RequestBody Task task) {
+		repository.save(task);
+
+	}
+}

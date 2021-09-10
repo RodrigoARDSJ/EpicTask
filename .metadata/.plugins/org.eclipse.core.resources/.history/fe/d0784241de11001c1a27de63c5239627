@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Lista de usuarios</title>
+<link href="css/style.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+	<section class="sectiontask">
+		<div class="color"></div>
+		<div class="header">
+			<ul>
+				<li><a href="/tasks"></a>Tasks</li>
+				<li><a href="/task/new">Criar Task</a></li>
+				<li><a href="/login">Login</a></li>
+			</ul>
+		</div>
+		<h1>Lista de usuarios</h1>
+		<div class="containertask">
+			<div class="card">
+				<div class="contentTask">
+					<div class="titleBox">
+						<ul th:each="user : ${userList}">
+							<li>
+								<p th:text="${user.name}">
+								<p th:text="${user.email}">
+							</li>
+						</ul>
+					</div>
+
+				</div>
+			</div>
+		</div>
+
+	</section>
+</body>
+</html>
