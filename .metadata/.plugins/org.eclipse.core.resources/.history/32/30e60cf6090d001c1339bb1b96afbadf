@@ -1,5 +1,0 @@
-package br.com.fiap.epictask.controller.advice;
-
-public class ValidationField {
-
-}
