@@ -8,6 +8,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 
 import lombok.Data;
 
@@ -30,7 +31,7 @@ public class User {
 	@Column(name = "ds_email")
 	private String email;
 	
-	@NotBlank(message = "Senha não pode ser vazia!")
+	@Size(min = 8, message = "A senha deve conter no minímo 8 caracteres!")
 	@Column(name = "ds_password")
 	private String password;
 

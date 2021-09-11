@@ -35,7 +35,7 @@ public class ApiUserController {
 
 	@GetMapping
 	@Cacheable("users")
-	public Page<User> index(@RequestParam(required = false) String name, @PageableDefault(size = 5) Pageable pageable) {
+	public Page<User> index(@RequestParam(required = false) String name, @PageableDefault Pageable pageable) {
 		if (name == null)
 			return repository.findAll(pageable);
 

@@ -36,7 +36,7 @@ public class ApiTaskController {
 	@GetMapping
 	@Cacheable("tasks")
 	public Page<Task> index(@RequestParam(required = false) String title,
-			@PageableDefault(size = 5) Pageable pageable) {
+			@PageableDefault Pageable pageable) {
 		if (title == null)
 			return repository.findAll(pageable);
 
