@@ -1,39 +1,78 @@
 <!DOCTYPE html>
 <html xmlns:th="http://thymeleaf.org">
-<head>
-<meta charset="UTF-8">
-<title>Task</title>
-<link href="css/style.css" rel="stylesheet" type="text/css">
-<link rel="stylesheet"
-	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-</head>
+
+<head th:include="_template :: head"></head>
+
 <body>
-	<section class="sectiontask">
-		<div class="color"></div>
-		<div class="header">
-			<ul>
-				<li><a href="/task/new">Criar Task</a></li>
-				<li><a href="/login">Login</a></li>
-			</ul>
-		</div>
-		<div class="containertask">
-			<div class="card">
-				<div class="contentTask">
-					<div class="titleBox">
-						<ul th:each="task : ${tasks}">
-							<li>
-								<p th:text="${task.title}">
-								<p th:text="${task.description}">
-								<p th:text="${task.points}">
-								<p><button class="btnDelete">apagar</button></p>
-							</li>
-						</ul>
-					</div>
 
+	<header th:include="_template :: header"></header>
+	<div class="alert" th:if="${message != null}" th:text="${message}"></div>
+	
+	<div class="card">
+		<nav th:include="_template :: menu('task')"></nav>
+		<a href="/task/new" class="button primary action">
+			<span class="material-icons">
+				add_circle_outline
+			</span>
+			<span th:text="#{label.newtask}"></span>
+		</a>
+		
+		<div class="tasks">
+			<div class="card task" th:each="task : ${tasks}">
+				<div>
+					<h3 th:text="${task.title}"></h3>
+					<span th:text="${task.points}+'pts'"></span>
 				</div>
+				<p th:text="${task.description}"></p>
+				<meter min="0" max="100" th:value="${task.status}"></meter>
+				
+				<div class="task-actions">
+					
+					<span>
+						<img 
+							th:title="${task.user.name}"
+							th:if="${task.user != null}"
+							class="avatar" 
+							th:alt="${'avatar do usuário ' + task.user.name}" 
+							th:src="${task.user.avatarUrl}"
+						>
+					</span>
+					
+					<a 
+						th:if="${task.user == null}"
+						th:href="${'/task/hold/' + task.id}" 
+						class="button icon primary" 
+						th:title="#{task.catch}">
+						<span class="material-icons">
+							back_hand
+						</span>
+					</a>
+					
+					<a 
+						th:if="${task.user == #authentication.getPrincipal()}"
+						th:href="${'/task/release/' + task.id}" 
+						class="button icon" 
+						th:title="#{task.catch}">
+						<span class="material-icons">
+							waving_hand
+						</span>
+					</a>
+				</div>
+				
 			</div>
+		
 		</div>
 
-	</section>
+	</div>
+
+
+
+
+
+
+
+
+
+
 </body>
 </html>

@@ -3,12 +3,36 @@
 @import
 	url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
 
+
+:root{
+	--primary: #cf3b2e;
+	--secundary: #160526;
+}
 * {
 	font-family: 'Poppins', sans-serif;
 	margin: 0;
 	padding: 0;
 	box-sizing: border-box;
 }
+
+body {
+	height:100vh;
+	overflow: hidden;
+	background: var(--secundary);
+	color: #fff;
+}
+
+a {
+	text-decoration: none;
+}
+
+h1 {
+	text-shadow: 0px 0px 10px #cf3b2e;
+	color: var(--primary);
+	font-size: 4rem;
+}
+
+
 
 .header {
 	margin: 1%;
@@ -30,465 +54,86 @@
 	margin: 1%;
 }
 
-.header ul a:hover {
-	opacity: 1;
-}
 
-.header ul a {
-	color: #fff;
-	text-decoration: none;
-	opacity: 0.5;
-	transition: 0.5s;
-}
-
-.content {
-	margin: 20%;
-	display: flex;
-	flex-direction: row;
-}
-
-.content ul {
-	margin-left: 5%;
-}
-
-body {
-	overflow: hidden;
-	background: #160526;
-}
-/* ----------------------------------------------------------------------------------------------------------------------------------------- */
-
-/* task */
-.sectiontask .color {
-	filter: blur(200px);
+.section .color {
+	filter: blur(100px);
 	position: absolute;
 }
 
-.sectiontask .color:nth-child(1) {
+.section .color:nth-child(1) {
 	top: -310px;
-	background: #cf3b2e;
 	width: 600px;
 	height: 600px;
 	right: 80px;
+	background: var(--primary);
 }
 
-.containertask {
-	position: relative;
-	z-index: 1;
-	display: flex;
-	flex-direction: row;
-	justify-content: center; align-items : center;
-	margin: 40px 0;
-	align-items: center;
-}
-
-.containertask ul {
-	position: relative;
-	width: 200px;
-	height: 300px;
-	background: rgba(255, 255, 255, 0.05);
-	margin: 10px;
-	border-radius: 15px;
-	display: inline-block;
-	align-items: center;
-	backdrop-filter: blur(10px);
-	list-style: none;
-}
-
-.containertask .contentTask ul {
-	position: relative;
-	display: inline-block;
-	justify-content: center;
-	align-items: center;
-	opacity: 0.5;
-	transition: 0.5s;
-}
-
-.containertask .contentTask ul:hover {
-	opacity: 1;
-}
-
-.containertask .contentTask ul p {
-	color: #fff;
-	text-transform: uppercase;
-	letter-spacing: 2px;
-	font-weight: 500;
-	font-size: 16px;
-	margin-left: 5%; 
-	margin-top : 20px;
-	line-height: 1.1em;
-	margin-top: 20px;
-}
-
-.containertask .contentTask ul .btnDelete {
-	background: #6466A8;
-	color: #fff;
-	max-width: 125px;
-	cursor: pointer;
-	font-weight: 600;
-	border-radius: 15px;
-	left: 10px;
-}
-
-/* ------------------------------------------------------------------------------------------------------------------------------------------ */
-
-/* ------------------------------------------------------------- formTask ------------------------------------------------------------------- */
-.sectionForm {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	min-height: 100vh;
-}
-
-.sectionForm .color {
-	filter: blur(150px);
-	position: absolute;
-}
-
-.sectionForm .color:nth-child(1) {
-	top: -310px;
-	background: #cf3b2e;
-	width: 600px;
-	height: 600px;
-	right: 100px;
-}
-
-.box {
-	position: relative;
-}
-
-.containerformTaask {
-	position: relative;
-	width: 400px;
-	min-height: 400px;
+.card {
+	margin: 0 auto;
+	max-width: 500px;
+	padding: 3rem;
 	background: rgba(255, 255, 255, 0.1);
 	border-radius: 10px;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	backdrop-filter: blur(5px);
-	box-shadow: 0 25px 45px rgba(0, 0, 0, 0.1);
-	border: 1px solid rgba(255, 255, 255, 0.5);
-	border-right: 1px solid rgba(255, 255, 255, 0.2);
-	border-bottom: 1px solid rgba(255, 255, 255, 0.5);
-}
-
-.formtask {
-	position: relative;
-	width: 100%;
-	height: 100%;
-	padding: 40px;
-}
-
-.formtask h1 {
-	position: relative;
-	color: #fff;
-	font-size: 24px;
-	font-weight: 600;
-	letter-spacing: 1px;
-	margin-bottom: 40px;
-}
-
-.formtask h1::before {
-	content: '';
-	position: absolute;
-	left: 0;
-	bottom: -10px;
-	width: 80px;
-	height: 4px;
-	background: #cf3b2e;
-}
-
-.formtask .inputbox {
-	width: 100%;
-	margin-top: 20px;
-}
-
-.formtask .inputbox input {
-	width: 100%;
-	background: rgba(255, 255, 255, 0.2);
-	border: none;
-	outline: none;
-	padding: 10px 20px;
-	border-radius: 35px;
-	border: 1px solid rgba(255, 255, 255, 0.5);
-	border-right: 1px solid rgba(255, 255, 255, 0.2);
-	border-bottom: 1px solid rgba(255, 255, 255, 0.5);
-	font-size: 16px;
-	letter-spacing: 1px;
-	color: #fff;
-	box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-}
-
-.formtask .inputbox input::placeholder {
-	color: #fff;
-}
-
-.formtask .inputbox textarea {
-	width: 100%;
-	background: rgba(255, 255, 255, 0.2);
-	border: none;
-	outline: none;
-	padding: 10px 20px;
-	border-radius: 35px;
-	border: 1px solid rgba(255, 255, 255, 0.5);
-	border-right: 1px solid rgba(255, 255, 255, 0.2);
-	border-bottom: 1px solid rgba(255, 255, 255, 0.5);
-	font-size: 16px;
-	letter-spacing: 1px;
-	color: #fff;
-	box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-}
-
-.formtask .inputbox textarea::placeholder {
-	color: #fff;
-}
-
-.formtask .inputbox .button {
-	background: #cf3b2e;;
-	color: #fff;
-	max-width: 125px;
-	cursor: pointer;
-	font-weight: 600;
-}
-
-.formtask .inputbox input[type="range"] {
-	background-color: #cf3b2e;
-}
-
-/* ------------------------------------------------------------------------------------------------------------------------------- */
-
-/* Login */
-.sectionForm {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	min-height: 100vh;
-}
-
-.sectionForm .color {
-	filter: blur(150px);
-	position: absolute;
-}
-
-.sectionForm .color:nth-child(1) {
-	top: -310px;
-	background: #cf3b2e;
-	width: 600px;
-	height: 600px;
-	right: 100px;
-}
-
-.box {
-	position: relative;
-}
-
-.containerLogin {
-	position: relative;
-	width: 400px;
-	min-height: 400px;
-	background: rgba(255, 255, 255, 0.1);
-	border-radius: 10px;
-	display: flex;
-	justify-content: center;
-	align-items: center;
 	backdrop-filter: blur(5px);
 	border: 1px solid rgba(255, 255, 255, 0.5);
 	border-right: 1px solid rgba(255, 255, 255, 0.2);
 	border-bottom: 1px solid rgba(255, 255, 255, 0.5);
-}
-
-.login {
-	position: relative;
-	width: 100%;
-	height: 100%;
-	padding: 40px;
-}
-
-.login h1 {
-	position: relative;
-	color: #fff;
-	font-size: 24px;
-	font-weight: 600;
-	letter-spacing: 1px;
-	margin-bottom: 40px;
-}
-
-.login h1::before {
-	content: '';
-	position: absolute;
-	left: 0;
-	bottom: -10px;
-	width: 80px;
-	height: 4px;
-	background: #cf3b2e;
-}
-
-.login .inputbox {
-	width: 100%;
-	margin-top: 20px;
-}
-
-.login .inputbox input {
-	width: 100%;
-	background: rgba(255, 255, 255, 0.2);
-	border: none;
-	outline: none;
-	padding: 10px 20px;
-	border-radius: 35px;
-	border: 1px solid rgba(255, 255, 255, 0.5);
-	border-right: 1px solid rgba(255, 255, 255, 0.2);
-	border-bottom: 1px solid rgba(255, 255, 255, 0.5);
-	font-size: 16px;
-	letter-spacing: 1px;
-	color: #fff;
-	box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-}
-
-.login .inputbox input::placeholder {
-	color: #fff;
-}
-
-.login .inputbox .button {
-	background: #cf3b2e;;
-	color: #fff;
-	max-width: 125px;
-	cursor: pointer;
-	font-weight: 600;
-}
-
-.forget {
-	margin-top: 10px;
-	color: #fff;
-}
-
-.forget a {
-	color: #fff;
-	font-weight: 600;
-}
-
-/* ------------------------------------------------------------------------------------------------------------------------------- */
-
-/* newUser */
-.sectionForm {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	min-height: 100vh;
-}
-
-.sectionForm .color {
-	filter: blur(150px);
-	position: absolute;
-}
-
-.sectionForm .color:nth-child(1) {
-	top: -310px;
-	background: #cf3b2e;
-	width: 600px;
-	height: 600px;
-	right: 100px;
-}
-
-.box {
-	position: relative;
-}
-
-.containerNewUser {
-	position: relative;
-	width: 400px;
-	min-height: 400px;
-	background: rgba(255, 255, 255, 0.1);
-	border-radius: 10px;
-	display: flex;
-	justify-content: center;
-	align-items: center;
 	backdrop-filter: blur(5px);
-	border: 1px solid rgba(255, 255, 255, 0.5);
-	border-right: 1px solid rgba(255, 255, 255, 0.2);
-	border-bottom: 1px solid rgba(255, 255, 255, 0.5);
 }
 
-.newUser {
-	position: relative;
-	width: 100%;
-	height: 100%;
-	padding: 40px;
-}
-
-.newUser h1 {
-	position: relative;
-	color: #fff;
-	font-size: 24px;
+.card h2{
+	text-align: center;
+	font-size: 1.5rem;
 	font-weight: 600;
-	letter-spacing: 1px;
-	margin-bottom: 40px;
+	text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.25)
 }
 
-.newUser h1::before {
-	content: '';
-	position: absolute;
-	left: 0;
-	bottom: -10px;
-	width: 80px;
-	height: 4px;
-	background: #cf3b2e;
-}
-
-.newUser .inputbox {
-	width: 100%;
-	margin-top: 20px;
-}
-
-.newUser .inputbox input {
-	width: 100%;
-	background: rgba(255, 255, 255, 0.2);
-	border: none;
-	outline: none;
-	padding: 10px 20px;
-	border-radius: 35px;
-	border: 1px solid rgba(255, 255, 255, 0.5);
-	border-right: 1px solid rgba(255, 255, 255, 0.2);
-	border-bottom: 1px solid rgba(255, 255, 255, 0.5);
-	font-size: 16px;
-	letter-spacing: 1px;
+.button, button {
+	background: var(--secundary);
+	border-radius: 10px;
+	font-size: 1.5rem;
+	text-align: center;
+	border: 0;
+	padding: 0.2rem 2rem;
 	color: #fff;
-	box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-}
-
-.newUser .inputbox input::placeholder {
-	color: #fff;
-}
-
-.newUser .inputbox .button {
-	background: #cf3b2e;
-	color: #fff;
-	max-width: 125px;
-	cursor: pointer;
-	font-weight: 600;
-}
-
-.newUser .inputbox .error {
-	color: #ff0000;
-	margin-top: 5px;
-	margin-left: 15px;
-	font-size: .8rem;
-	margin-left: 15px;
-}
-
-span {
-	position: absolute;
-	right: 60px;
-	transform: translate(0, -50%);
-	top: 67.5%;
 	cursor: pointer;
 }
 
-span .fas {
-	color: #cf3b2e;
+header .login-info img{
+	margin: 1rem;	
 }
 
-.inputbox input:valid ~span {
-	display: block;
+
+header
+
+h1{
+	font-weight: 600;
+	font-size: 4rem;
+	color: var(--primary);
+	text-shadow: 0px 0px 10px var(--primary);
+}
+.button.primary, button.primary {
+	background: var(--primary);
+	box-shadow: 0px 0px 7px var(--primary);
+	border-radius: 10px; 
 }
 
-/* ------------------------------------------------------------------------------------------------------------------------------- */
+.alert {
+    margin: 0 auto;
+    max-width: 300px;
+    padding: 1rem;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(61px);
+    border-radius: 10px;
+}
+
+.alert.error{
+	background:rgba(255, 255, 255, 0.1);
+}
+
+.avatar{
+	width: 32px;
+	height: 32px;
+	border-radius: 16px;
+}
+

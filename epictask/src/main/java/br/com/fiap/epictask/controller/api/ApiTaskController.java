@@ -29,55 +29,83 @@ import br.com.fiap.epictask.repository.TaskRepository;
 @RestController
 @RequestMapping("/api/task")
 public class ApiTaskController {
-
+	
 	@Autowired
 	private TaskRepository repository;
-
-	@GetMapping
+	
+	@GetMapping()
 	@Cacheable("tasks")
-	public Page<Task> index(@RequestParam(required = false) String title,
-			@PageableDefault Pageable pageable) {
-		if (title == null)
+	public Page<Task> index(
+			@RequestParam(required = false) String title,
+			@PageableDefault(size = 20) Pageable pageable){
+		
+		if(title == null) 
 			return repository.findAll(pageable);
-
-		return repository.findByTitleContaining(title, pageable);
+		//TODO usar contains
+		return repository.findByTitleLike("%" + title + "%", pageable);
 	}
-
-	@PostMapping
+	
+	@PostMapping()
 	@CacheEvict(value = "tasks", allEntries = true)
 	public ResponseEntity<Task> create(@RequestBody @Valid Task task, UriComponentsBuilder uriBuilder) {
 		repository.save(task);
-		URI uri = uriBuilder.path("/api/task/{id}").buildAndExpand(task.getId()).toUri();
-		return ResponseEntity.created(uri).body(task);
+		URI uri = uriBuilder
+					.path("/api/task/{id}")
+					.buildAndExpand(task.getId())
+					.toUri();
+		return ResponseEntity.created(uri).build();
 	}
-
+	
 	@GetMapping("{id}")
-	public ResponseEntity<Task> show(@PathVariable Long id) {
+	public ResponseEntity<Task>  get(@PathVariable Long id) {
 		return ResponseEntity.of(repository.findById(id));
 	}
-
+	
+	@DeleteMapping("{id}")
+	@CacheEvict(value = "tasks", allEntries = true)
+	public ResponseEntity<Task> delete(@PathVariable Long id){
+		Optional<Task> task = repository.findById(id);
+		
+		if(task.isEmpty()) 
+			return ResponseEntity.notFound().build() ;
+		
+		repository.deleteById(id);
+		
+		return ResponseEntity.ok().build();
+		
+	}
+	
 	@PutMapping("{id}")
-	public ResponseEntity<Task> update(@PathVariable Long id, @RequestBody Task newTask) {
-		Optional<Task> findById = repository.findById(id);
-		if (findById.isEmpty())
-			return ResponseEntity.notFound().build();
-
-		Task task = findById.get();
+	@CacheEvict(value = "tasks", allEntries = true)
+	public ResponseEntity<Task> update(@RequestBody @Valid Task newTask, @PathVariable Long id){
+		Optional<Task> optional = repository.findById(id);
+		
+		if(optional.isEmpty()) 
+			return ResponseEntity.notFound().build() ;
+		
+		Task task = optional.get();
+		
 		task.setTitle(newTask.getTitle());
 		task.setDescription(newTask.getDescription());
 		task.setPoints(newTask.getPoints());
+		
 		repository.save(task);
+		
 		return ResponseEntity.ok(task);
 	}
-
-	@DeleteMapping("{id}")
-	@CacheEvict(value = "tasks", allEntries = true)
-	public ResponseEntity<Task> destroy(@PathVariable Long id) {
-		Optional<Task> task = repository.findById(id);
-		if (task.isEmpty()) {
-			return ResponseEntity.notFound().build();
-		}
-		repository.deleteById(id);
-		return ResponseEntity.ok().build();
-	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }

@@ -1,55 +1,66 @@
 <!DOCTYPE html>
 <html xmlns:th="http://thymeleaf.org">
-<head>
-<meta charset="UTF-8">
-<title>Novo Usuario</title>
-<link href="../css/style.css" rel="stylesheet" type="text/css">
-<link rel="stylesheet"
-	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.0/css/all.min.css"
-	integrity="sha512-gRH0EcIcYBFkQTnbpO8k0WlsD20x5VzjhOA1Og8+ZUAhcMUCvd+APD35FJw3GzHAP3e+mP28YcDJxVr745loHw=="
-	crossorigin="anonymous" referrerpolicy="no-referrer" />
-	
-<script src="https://kit.fontawesome.com/a076d05399.js"></script>
-</head>
+
+<head th:include="_template :: head"></head>
+
 <body>
 
+	<!-- <header th:include="_template :: header"></header> -->
+	
+	<section class="card form">
+		<h2>Cadastrar Usuário</h2>
+		
+		<form class="form" th:action="@{/user}" method="post" th:object="${user}">
+			<label for="name">Nome</label>
+			<input 
+				type="text" 
+				name="name" 
+				id="name" 
+				th:field="*{name}"
+				th:classappend="${#fields.hasErrors('name')}?invalid"	
+				autocomplete="off"		 
+			/>
+			<span class="error" th:errors="*{name}"></span>
+			
+			<label for="githubuser">Usuário do GitHub</label>
+			<input 
+				type="text" 
+				name="githubUser" 
+				id="githubUser" 
+				th:field="*{githubUser}"
+		 
+			/>
+			<span class="error" th:errors="*{githubUser}"></span>
 
-	<section class="sectionForm">
-		<div class="color"></div>
-		<div class="box">
-			<div class="containerNewUser">
-				<div class="newUser">
-					<h1>Criar Usuario</h1>
-					<form action="/login" method="post" th:object="${user}">
-						<div class="inputbox">
-							<input type="text" placeholder="Digite seu Nome" name="name" th:field="*{name}">
-							<p class="error" th:errors="*{name}">
-						</div>
+			<label for="email">E-mail</label>
+			<input 
+				type="email" 
+				name="email" 
+				id="email" 
+				th:field="*{email}"
+				th:classappend="${#fields.hasErrors('email')}?invalid"
+				autocomplete="off"		 
+					 
+			/>
+			<span class="error"  th:errors="*{email}"></span>
 
-						<div class="inputbox">
-							<input type="text" placeholder="Digite seu email" name="email" th:field="*{email}">
-							<p class="error" th:errors="*{email}">
-						</div>
-
-						<div class="inputbox">
-							<input type="password" id="password"
-								placeholder="Digite sua senha" name="password" th:field="*{password}"> 
-								<p class="error" th:errors="*{password}">
-								<span class="show-btn">
-									<i class="fas fa-eye" aria-hidden="true"></i>
-								</span>
-						</div>
-
-						<div class="inputbox">
-							<a href="/task"><input class="button" value="Cancelar"></a>
-							<input type="submit" class="button" value="Salvar">
-						</div>
-					</form>
-				</div>
+			<label for="password">Senha</label>
+			<input 
+				type="password" 
+				name="password" 
+				id="password" 
+				th:field="*{password}"
+				th:classappend="${#fields.hasErrors('password')}?invalid"			 
+			/>
+			<span class="error"  th:errors="*{password}"></span>
+			
+			<div class="form-buttons">
+				<a href="/user" class="button">Cancelar</a>
+				<button class="button primary" type="submit">Salvar</button>
 			</div>
-		</div>
+			
+		</form>
 	</section>
 
-	<script type="text/javascript" src="../js/script.js"></script>
 </body>
 </html>

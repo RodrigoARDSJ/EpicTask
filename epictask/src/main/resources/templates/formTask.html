@@ -1,49 +1,62 @@
 <!DOCTYPE html>
 <html xmlns:th="http://thymeleaf.org">
-<head>
-<meta charset="UTF-8">
-<title>Criar Task</title>
-<link href="../css/style.css" rel="stylesheet" type="text/css">
-<link rel="stylesheet"
-	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-</head>
-<body>
+  <head th:include="_template :: head">
+    <meta charset="UTF-8" />
+    <title>Criar Task</title>
+  </head>
+  <body>
+    <div class="section">
+      <div class="color"></div>
+      <h1>EpicTask</h1>
+      <div class="card">
+        <h2>Criar Task</h2>
+        <form class="form" action="/task" method="post" th:object="${task}">
+          <label class="hide" for="title">Titulo</label>
+          <input
+          	th:classappend="${#fields.hasErrors('title')}? invalid"
+          	class="invalid"
+            type="text"
+            id="title"
+            name="title"
+            placeholder="Titulo"
+            th:field="*{title}"
+          />
 
-	<section class="sectionForm">
-		<div class="color"></div>
-		<div class="box">
-			<div class="containerformTaask">
-				<div class="formtask">
-					<h1>Criar Task</h1>
-					<form action="/task" method="post" th:object="${task}">
-						<div class="inputbox">
-							<i class="fa fa-tasks" aria-hidden="true"></i> 
-							<input type="text"	id="title" name="title" placeholder="Titulo" th:field="*{title}">
-							<p th:errors="*{title}"></p>
-						</div>
+          <label class="hide" for="description">Descrição</label>
+          <textarea
+          	th:classappend="${#fields.hasErrors('description')}? invalid"
+	        class="invalid"
+            id="description"
+            rows=""
+            cols=""
+            name="description"
+            placeholder="Descrição"
+            th:field="*{description}"
+          ></textarea>
+          <p th:errors="*{description}"></p>
 
-						<div class="inputbox">
-							<i class="fa fa-comment" aria-hidden="true"></i>
-							<textarea id="description" rows="" cols="" name="description"
-								placeholder="Descrição" th:field="*{description}"></textarea>
-							<p th:errors="*{description}"></p>
-						</div>
+          <label for="points">Pontos</label>
+          <input
+          	th:classappend="${#fields.hasErrors('points')}? invalid"
+          	class="invalid"
+            id="points"
+            type="range"
+            name="points"
+            min="10"
+            max="500"
+            step="10"
+            oninput="document.querySelector('#output-points').value=this.value"
+            th:field="*{points}"
+          />
+          <output id="output-points">10</output>
+          <p th:errors="*{points}"></p>
 
-						<div class="inputbox">
-							<input id="points" type="range" name="points" min="0" max="500"
-								th:field="*{points}">
-							<p th:errors="*{points}"></p>
-
-						</div>
-
-						<div class="inputbox">
-							<a href="/task"><input class="button" value="Cancelar"></a>
-							<input type="submit" class="button" value="salvar">
-						</div>
-					</form>
-				</div>
-			</div>
-		</div>
-	</section>
-</body>
+          <div class="form-button">
+            <a class="button" href="/task">Cancelar</a>
+            <button type="submit" class="primary">Salvar</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </body>
 </html>
